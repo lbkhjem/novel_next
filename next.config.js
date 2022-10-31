@@ -1,6 +1,7 @@
 
 const moduleExports = {
   reactStrictMode: true,
+  swcMinify: false,
   typescript: {
     ignoreBuildErrors: true,
   },
