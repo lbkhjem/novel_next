@@ -1,4 +1,4 @@
-import { Card, Container, Grid, Row, Text } from "@nextui-org/react";
+import { Card, Container, Grid, Link, Row, Text } from "@nextui-org/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getNovelUpdate } from "../API/APIManage";
@@ -14,7 +14,7 @@ type Props = {
 export default function Index() {
   const [datanovel, setDatanovel] = useState([]);
   useEffect(() => {
-    getNovelUpdate({page:1})
+    getNovelUpdate({ page: 1 })
       .then((res: any) => {
         setDatanovel(res?.data);
       })
@@ -59,8 +59,23 @@ export default function Index() {
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
         <Container>
+          <div className="w-full flex justify-between">
+            <Text
+              h1
+              size={20}
+              css={{
+                textGradient: "45deg, $blue600 -20%, $pink600 50%",
+              }}
+              weight="bold"
+            >
+              RECENTLY UPDATED NOVEL
+            </Text>
+            <Link href="#">
+              MORE
+            </Link>
+          </div>
           <Grid.Container gap={2} justify="flex-start">
-            {datanovel?.slice(0,18).map((item, index) => (
+            {datanovel?.slice(0, 18).map((item, index) => (
               <Grid xs={2} sm={2} key={index}>
                 <Card isHoverable isPressable>
                   <Card.Body css={{ p: 0 }}>
@@ -86,7 +101,6 @@ export default function Index() {
                       </Text>
                     </div>
                   </Card.Body>
-
                 </Card>
               </Grid>
             ))}
