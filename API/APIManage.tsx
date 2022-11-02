@@ -1,9 +1,9 @@
 import { AxiosInstance } from './networking';
 
-export const baseUrlNovel = 'http://18.142.48.180:8001/';
+export const baseUrlNovel = 'https://novelnextapi.vercel.app/';
 
 export function getNovelUpdate(params: any) {
-  return AxiosInstance.get(baseUrlNovel + `update?page=${params?.page}`, {});
+  return AxiosInstance.get(baseUrlNovel + `api/update?page=${params?.page}`, {});
 }
 export function getNovelHotest(params: any) {
   return AxiosInstance.get(baseUrlNovel + `hotnovel?page=${params?.page}`, {});

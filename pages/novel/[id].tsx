@@ -1,30 +1,18 @@
 import { Card, Container, Grid, Link, Text } from "@nextui-org/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { getNovelUpdate } from "../API/APIManage";
-import { Layout } from "../components/PC/Layout";
-import Post from "../interfaces/post";
-import { CMS_NAME } from "../lib/constants";
+import { Layout } from "../../components/PC/Layout";
 
-type Props = {
-  allPosts: Post[];
-};
 
 export default function Index() {
   const [datanovel, setDatanovel] = useState([]);
-  useEffect(() => {
-    getNovelUpdate({ page: 1 })
-      .then((res: any) => {
-        setDatanovel(res?.data);
-      })
-      .catch((e) => {});
-  }, []);
+ 
  
   return (
     <>
       <Layout>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>Next.js Blog Example with </title>
         </Head>
         <Container>
           <div className="w-full flex justify-between">
