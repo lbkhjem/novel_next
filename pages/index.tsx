@@ -1,5 +1,6 @@
 import { Card, Container, Grid, Link, Text } from "@nextui-org/react";
 import Head from "next/head";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getNovelUpdate } from "../API/APIManage";
 import { Layout } from "../components/PC/Layout";
@@ -19,7 +20,7 @@ export default function Index() {
       })
       .catch((e) => {});
   }, []);
- 
+
   return (
     <>
       <Layout>
@@ -38,22 +39,38 @@ export default function Index() {
             >
               RECENTLY UPDATED NOVEL
             </Text>
-            <Link href="#">
-              MORE
-            </Link>
+            <Link href="#">MORE</Link>
           </div>
-          <Grid.Container gap={2} justify="flex-start">
+          <Grid.Container gap={1} justify="space-between">
             {datanovel?.slice(0, 18).map((item, index) => (
-              <Grid xs={2} sm={2} key={index}>
+              <Grid xs={6} sm={2} key={index}>
                 <Card isHoverable isPressable>
                   <Card.Body css={{ p: 0 }}>
-                    <Card.Image
+                    <div
+                      style={{
+                        width: '100%',
+                        height: 210,
+                        position: "relative",
+                      }}
+                    >
+                      <Image
+                        src={item.cover}
+                        className="px-2 "
+                        fill
+                        sizes="100vw"
+                        alt={"ddv"}
+                        style={{
+                          objectFit: 'contain',
+                        }}
+                      />
+                    </div>
+                    {/* <Image
                       src={item.cover}
-                      objectFit="cover"
-                      width="100%"
-                      height={210}
+                      objectFit=""
+                      // width="100%"
+                      // height={210}
                       alt={item.novelsname}
-                    />
+                    /> */}
                     <div className="items-start flex flex-col px-2 py-2">
                       <Text h2 className="font-medium text-left">
                         {item.novelsname}
