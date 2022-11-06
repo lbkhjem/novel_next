@@ -18,12 +18,12 @@ const shimmer = (w: number, h: number) => `
   <rect width="${w}" height="${h}" fill="#333" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`
+</svg>`;
 
 const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str)
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
 type Props = {
   allPosts: Post[];
 };
@@ -44,7 +44,7 @@ export default function Index() {
         <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
-        <Container>
+        <div className="container mx-auto">
           <div className="w-full flex justify-between">
             <Text
               h1
@@ -58,10 +58,13 @@ export default function Index() {
             </Text>
             <Link href="#">MORE</Link>
           </div>
-          <Grid.Container gap={1} justify="space-between">
+          <div className="grid grid-cols-6 gap-2">
             {datanovel?.slice(0, 18).map((item, index) => (
-              <Grid xs={6} sm={2} key={index}>
-                <div className="max-w-sm rounded-lg border border-gray-200 shadow-md">
+              <Link href={`/novel/${item.idnovel}`}>
+                <a
+                  key={index}
+                  className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md"
+                >
                   <Image
                     src={item.cover}
                     className="px-2 "
@@ -71,18 +74,24 @@ export default function Index() {
                     alt={"ddv"}
                     style={{
                       maxWidth: "100%",
-                      maxHeight:210,
+                      maxHeight: 210,
                       height: "auto",
                       objectFit: "cover",
                     }}
-                    blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(700, 475)
+                    )}`}
                     priority
                   />
                   <div className="p-5">
-                    <Text h2 css={{
+                    <Text
+                      h2
+                      css={{
                         // color: "$black",
                         fontWeight: "$semibold",
-                      }} className="font-medium text-left">
+                      }}
+                      className="font-medium text-left"
+                    >
                       {item.novelsname}
                     </Text>
                     <Text
@@ -95,11 +104,11 @@ export default function Index() {
                       {item.lasterchapter}
                     </Text>
                   </div>
-                </div>
-              </Grid>
+                </a>
+              </Link>
             ))}
-          </Grid.Container>
-        </Container>
+          </div>
+        </div>
       </Layout>
     </>
   );

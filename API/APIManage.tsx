@@ -1,6 +1,8 @@
 import { AxiosInstance } from './networking';
 
-export const baseUrlNovel = 'https://novelnextapi.vercel.app/';
+// export const baseUrlNovel = 'https://novelnextapi.vercel.app/';
+
+export const baseUrlNovel = 'http://localhost:3000/';
 
 export function getNovelUpdate(params: any) {
   return AxiosInstance.get(baseUrlNovel + `api/update?page=${params?.page}`, {});
@@ -15,7 +17,7 @@ export function getNovelHot(params: any) {
   return AxiosInstance.get(baseUrlNovel + 'hotnovel', {});
 }
 export function getNovelDetails(id:any) {
-  return AxiosInstance.get(baseUrlNovel + `novel?id=${id}`, {});
+  return AxiosInstance.get(baseUrlNovel + `api/novel?id=${id}`, {});
 }
 export function getChapterDetails(novelid:any,chapterid:any) {
   return AxiosInstance.get(baseUrlNovel + `chapter?novelid=${novelid}&chapterid=${chapterid}`, {});

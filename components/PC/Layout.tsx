@@ -24,19 +24,18 @@ export const Layout = ({ children }) => {
         maxW: "100%",
       }}
     >
-        <Navbar className="" isBordered variant="sticky">
+      <Navbar className="" isBordered variant="sticky">
         <Navbar.Brand css={{ mr: "$4" }}>
           {/* <AcmeLogo /> */}
           <Text b color="inherit" css={{ mr: "$11" }} hideIn="xs">
-            ACME
+            Novel
           </Text>
           <Navbar.Content hideIn="xs" variant="highlight">
             <Navbar.Link isActive href="#">
-              Dashboard
+              Hot Novel
             </Navbar.Link>
-            <Navbar.Link href="#">Team</Navbar.Link>
-            <Navbar.Link href="#">Activity</Navbar.Link>
-            <Navbar.Link href="#">Settings</Navbar.Link>
+            <Navbar.Link href="#">Completed Novel</Navbar.Link>
+            <Navbar.Link href="#">Update Novel</Navbar.Link>
           </Navbar.Content>
         </Navbar.Brand>
         <Navbar.Content
@@ -87,7 +86,37 @@ export const Layout = ({ children }) => {
         </Navbar.Content>
       </Navbar>
       {children}
-      {/* <Content /> */}
+      <footer className="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6">
+        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          © 2022{" "}
+          <a href="/" className="hover:underline">
+            Flowbite™
+          </a>
+          . All Rights Reserved.
+        </span>
+        <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+          <li>
+            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mr-4 hover:underline md:mr-6">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mr-4 hover:underline md:mr-6">
+              Licensing
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:underline">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </footer>
     </Box>
   );
 };

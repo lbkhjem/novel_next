@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.list_chapter {
+    float: left;
+    width: 96%;
+    padding: 10px 2%;
+    /* background: #fff; */
+    margin-top: 5px;
+    font: bold 12px/18px Tahoma, Geneva, sans-serif;
+    /* color: #383838; */
+}
+.chapter-list {
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+.list_chapter .row h2 {
+    float: left;
+    width: 64%;
+}
+.h2-manga {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #31a95b;
+    font-weight: bold;
+}
+.chapter-list .row {
+    width: 100%;
+    float: left;
+    text-align: left;
+    line-height: 20px;
+    padding: 8px;
+}
+.chapter-list .row span:first-child {
+    float: left;
+    width: 70%;
+}
+.chapter-list .row span:last-child {
+    text-align: right;
+}
+
+.chapter-list .row span:last-child {
+    float: left;
+    width: 26%;
+}
+.chapter-content{
+    max-width: 840px;
+    margin-right: auto;
+    margin-left: auto;
+}
