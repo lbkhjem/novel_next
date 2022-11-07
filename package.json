@@ -27,6 +27,7 @@
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
     "next": "latest",
+    "next-seo": "^5.14.0",
     "next-themes": "^0.2.1",
     "nextjs-cors": "^2.1.1",
     "pug": "^3.0.2",
