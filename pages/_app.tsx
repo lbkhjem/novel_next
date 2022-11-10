@@ -1,57 +1,43 @@
-import { createTheme, NextUIProvider } from "@nextui-org/react";
-import { AppProps } from "next/app";
+import { useState } from 'react';
+import NextApp, { AppProps, AppContext } from 'next/app';
+import { getCookie, setCookie } from 'cookies-next';
+import Head from 'next/head';
+import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import "../styles/index.css";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+export default function App(props: AppProps & { colorScheme: ColorScheme }) {
+  const { Component, pageProps } = props;
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
-// 2. Call `createTheme` and pass your custom values
-const lightTheme = createTheme({
-  type: "light",
-  theme: {
-    // colors: {...}, // optional
-  },
-});
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  };
 
-const darkTheme = createTheme({
-  type: "dark",
-  theme: {
-    colors: {
-      // brand colors
-      primaryLight: '$green200',
-      primaryLightHover: '$green300',
-      primaryLightActive: '$green400',
-      primaryLightContrast: '$green600',
-      primary: '#4ADE7B',
-      primaryBorder: '$green500',
-      primaryBorderHover: '$green600',
-      primarySolidHover: '$green700',
-      primarySolidContrast: '$white',
-      primaryShadow: '$green500',
-
-      gradient: 'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
-      link: '#5E1DAD',
-
-      // you can also create your own color
-      myColor: '#ff4ecd'
-
-      // ...  more colors
-    },
-    space: {},
-    fonts: {}
-  }
-});
-export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextThemesProvider
-      defaultTheme="system"
-      attribute="class"
-      value={{
-        light: lightTheme.className,
-        dark: darkTheme.className,
-      }}
-    >
-      <NextUIProvider>
-        <Component {...pageProps} />
-      </NextUIProvider>
-    </NextThemesProvider>
+    <>
+      <Head>
+        <title>Mantine next example</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="shortcut icon" href="/favicon.svg" />
+      </Head>
+
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          <NotificationsProvider>
+            <Component {...pageProps} />
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </>
   );
 }
+
+App.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await NextApp.getInitialProps(appContext);
+  return {
+    ...appProps,
+    colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'dark',
+  };
+};

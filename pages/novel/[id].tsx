@@ -1,4 +1,5 @@
-import { Text } from "@nextui-org/react";
+
+import { Text } from "@mantine/core";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,40 +42,25 @@ export default function Index({ dataseo }) {
         </div>
         <div className="col-span-2 flex flex-col">
           <Text
-            h1
-            css={{
-              fontSize: 24,
-              // fontWeight: "$semibold",
-            }}
+           
             className="font-medium text-left text-4xl py-1"
           >
             {dataseo.novelsname}
           </Text>
           <Text
-            h3
-            css={{
-              fontSize: 15,
-            }}
+          
             className="font-medium text-left py-1"
           >
             {dataseo.othername}
           </Text>
           <Text
-            h3
-            css={{
-              // color: "$black",
-              fontSize: 15,
-            }}
+           
             className="font-medium text-left py-1"
           >
             Author: {dataseo.author}
           </Text>
           <Text
-            h4
-            css={{
-              // color: "$black",
-              fontSize: 15,
-            }}
+           
             className="font-medium text-left py-1"
           >
             <div
@@ -119,20 +105,13 @@ export default function Index({ dataseo }) {
       <div className="grid grid-cols-3 gap-4">
         <div className="flex flex-col col-span-2 shadow-md p-2">
           <Text
-            h4
-            css={{
-              color: "#9e9e9e",
-              fontSize: 14,
-            }}
+            
             className="font-medium text-left py-1"
           >
             Chapters
           </Text>
           <Text
-            h4
-            css={{
-              fontSize: 16,
-            }}
+          
             className="font-bold text-left py-1"
           >
             {dataseo.chapterlist?.length} Chapters
@@ -148,10 +127,7 @@ export default function Index({ dataseo }) {
             ))}
           </div>
           <Text
-            h4
-            css={{
-              fontSize: 20,
-            }}
+          
             className="font-bold text-left py-1"
           >
             Table of contents
@@ -173,7 +149,7 @@ export default function Index({ dataseo }) {
                     <path
                       fillRule="evenodd"
                       d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </div>
@@ -210,10 +186,7 @@ export default function Index({ dataseo }) {
         </div>
         <div className="flex flex-col col-span-1 shadow-md p-2">
           <Text
-            h3
-            css={{
-              fontSize: 18,
-            }}
+           
             className="font-bold text-left py-1"
           >
             You may also like
@@ -242,10 +215,7 @@ export default function Index({ dataseo }) {
               </div>
               <div className="col-span-2">
                 <Text
-                  h2
-                  css={{
-                    fontSize: 18,
-                  }}
+                  
                   className="font-bold text-left py-1"
                 >
                   {item.novelsname}

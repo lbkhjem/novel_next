@@ -1,13 +1,11 @@
 import { Skeleton } from "@mantine/core";
-import { Link, Text } from "@nextui-org/react";
 import { NextSeo } from "next-seo";
-import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getNovelUpdate } from "../API/APIManage";
 import { Layout } from "../components/PC/Layout";
 import Post from "../interfaces/post";
-import { CMS_NAME } from "../lib/constants";
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -46,22 +44,13 @@ export default function Index() {
   return (
     <>
       <Layout>
-      <NextSeo
-      title="NovelWorld | Read Novels online free"
-      description="NovelWorld is the foremost English publisher of Chinese and Korean webnovels and light novels"
-    />
+        <NextSeo
+          title="NovelWorld | Read Novels online free"
+          description="NovelWorld is the foremost English publisher of Chinese and Korean webnovels and light novels"
+        />
         <div className="container mx-auto">
           <div className="w-full flex justify-between">
-            <Text
-              h1
-              size={20}
-              css={{
-                textGradient: "45deg, $blue600 -20%, $pink600 50%",
-              }}
-              weight="bold"
-            >
-              RECENTLY UPDATED NOVEL
-            </Text>
+            <h1>RECENTLY UPDATED NOVEL</h1>
             <Link href="#">MORE</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -76,11 +65,8 @@ export default function Index() {
                   </div>
                 ))
               : datanovel?.slice(0, 18).map((item, index) => (
-                  <Link href={`/novel/${item.idnovel}`}>
-                    <a
-                      key={index}
-                      className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md"
-                    >
+                  <Link key={index} className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md" href={`/novel/${item.idnovel}`}>
+                  
                       <Image
                         src={item.cover}
                         className="px-2 "
@@ -100,27 +86,9 @@ export default function Index() {
                         priority
                       />
                       <div className="p-5">
-                        <Text
-                          h2
-                          css={{
-                            // color: "$black",
-                            fontWeight: "$semibold",
-                          }}
-                          className="font-medium text-left"
-                        >
-                          {item.novelsname}
-                        </Text>
-                        <Text
-                          css={{
-                            color: "$accents7",
-                            fontWeight: "$semibold",
-                            fontSize: "$sm",
-                          }}
-                        >
-                          {item.lasterchapter}
-                        </Text>
+                        <h2>{item.novelsname}</h2>
+                        <h3>{item.lasterchapter}</h3>
                       </div>
-                    </a>
                   </Link>
                 ))}
           </div>
