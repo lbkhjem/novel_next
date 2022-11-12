@@ -1,6 +1,7 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
 import { IconMoonStars, IconSun } from "@tabler/icons";
 import { useTheme as useNextTheme } from "next-themes";
+import { AnalyticsWrapper } from "../analytics";
 
 export const Layout = ({ children }) => {
   const { setTheme } = useNextTheme();
@@ -125,6 +126,7 @@ export const Layout = ({ children }) => {
           </li>
         </ul>
       </footer>
+      <AnalyticsWrapper />
     </div>
   );
 };
