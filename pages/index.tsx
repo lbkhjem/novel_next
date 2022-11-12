@@ -27,7 +27,9 @@ const toBase64 = (str: string) =>
 type Props = {
   allPosts: Post[];
 };
-const dataloading = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17,18,19,20];
+const dataloading = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+];
 export default function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [datanovel, setDatanovel] = useState([]);
@@ -50,7 +52,9 @@ export default function Index() {
         />
         <Container className=" mx-auto">
           <div className="w-full flex justify-between py-2">
-          <Title className="max-md:text-14" size={20} order={1}>RECENTLY UPDATED NOVEL</Title>
+            <Title className="max-md:text-14" size={20} order={1}>
+              RECENTLY UPDATED NOVEL
+            </Title>
             <Link href="#">MORE</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
@@ -65,30 +69,40 @@ export default function Index() {
                   </div>
                 ))
               : datanovel.map((item, index) => (
-                  <Link key={index} className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md" href={`/novel/${item.idnovel}`}>
-                  
-                      <Image
-                        src={item.cover}
-                        className="px-2 "
-                        placeholder="blur"
-                        width={250}
-                        height={210}
-                        alt={"ddv"}
-                        style={{
-                          maxWidth: "100%",
-                          maxHeight: 210,
-                          height: "auto",
-                          objectFit: "cover",
-                        }}
-                        blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                          shimmer(700, 475)
-                        )}`}
-                        priority
-                      />
-                      <div className="py-5 px-2">
-                      <Title order={2} size={14}>{item.novelsname}</Title>
-                      <Title order={3} className="font-normal" size={12}>{item.lasterchapter}</Title>
-                      </div>
+                  <Link
+                    key={index}
+                    className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md"
+                    href={`/novel/${item.idnovel}`}
+                  >
+                    <Image
+                      src={item.cover}
+                      className="px-2 "
+                      placeholder="blur"
+                      width={250}
+                      height={210}
+                      sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+                      alt={"ddv"}
+                      style={{
+                        // maxWidth: "100%",
+                        maxHeight: 210,
+                        height: "auto",
+                        objectFit: "cover",
+                      }}
+                      blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                        shimmer(700, 475)
+                      )}`}
+                      priority
+                    />
+                    <div className="py-5 px-2">
+                      <Title order={2} size={14}>
+                        {item.novelsname}
+                      </Title>
+                      <Title order={3} className="font-normal" size={12}>
+                        {item.lasterchapter}
+                      </Title>
+                    </div>
                   </Link>
                 ))}
           </div>
