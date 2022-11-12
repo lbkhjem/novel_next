@@ -13,11 +13,7 @@ export const Layout = ({ children }) => {
       <nav className=" px-2 sm:px-4 py-2.5  drop-shadow-xl  border-b mb-2 ">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <a href="/" className="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
+          
             <span className="text-xl font-semibold whitespace-nowrap">
               Novel
             </span>
@@ -96,14 +92,14 @@ export const Layout = ({ children }) => {
 
       {children}
       <footer className="p-4  shadow md:flex md:items-center md:justify-between md:p-6">
-        <span className="text-sm text-gray-500 sm:text-center ">
+        <span className="text-sm sm:text-center ">
           © 2022{" "}
           <a href="/" className="hover:underline">
             Novel
           </a>
           . All Rights Reserved.
         </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+        <ul className="flex flex-wrap items-center mt-3 text-sm  sm:mt-0">
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6 ">
               About

@@ -50,7 +50,7 @@ export default function Index() {
         />
         <Container className=" mx-auto">
           <div className="w-full flex justify-between py-2">
-          <Title order={1}>RECENTLY UPDATED NOVEL</Title>
+          <Title className="max-md:text-14" size={20} order={1}>RECENTLY UPDATED NOVEL</Title>
             <Link href="#">MORE</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
