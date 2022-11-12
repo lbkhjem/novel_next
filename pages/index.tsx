@@ -1,4 +1,4 @@
-import { Skeleton } from "@mantine/core";
+import { Container, Skeleton, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +27,7 @@ const toBase64 = (str: string) =>
 type Props = {
   allPosts: Post[];
 };
-const dataloading = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+const dataloading = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17,18,19,20];
 export default function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [datanovel, setDatanovel] = useState([]);
@@ -48,12 +48,12 @@ export default function Index() {
           title="NovelWorld | Read Novels online free"
           description="NovelWorld is the foremost English publisher of Chinese and Korean webnovels and light novels"
         />
-        <div className="container mx-auto">
-          <div className="w-full flex justify-between">
-            <h1>RECENTLY UPDATED NOVEL</h1>
+        <Container className=" mx-auto">
+          <div className="w-full flex justify-between py-2">
+          <Title order={1}>RECENTLY UPDATED NOVEL</Title>
             <Link href="#">MORE</Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
             {isLoading
               ? dataloading.map((item, index) => (
                   <div
@@ -64,7 +64,7 @@ export default function Index() {
                     <Skeleton height={18} radius="xl" mb="xl" />
                   </div>
                 ))
-              : datanovel?.slice(0, 18).map((item, index) => (
+              : datanovel.map((item, index) => (
                   <Link key={index} className="max-w-sm rounded-lg h-full border border-gray-200 shadow-md" href={`/novel/${item.idnovel}`}>
                   
                       <Image
@@ -85,14 +85,14 @@ export default function Index() {
                         )}`}
                         priority
                       />
-                      <div className="p-5">
-                        <h2>{item.novelsname}</h2>
-                        <h3>{item.lasterchapter}</h3>
+                      <div className="py-5 px-2">
+                      <Title order={2} size={14}>{item.novelsname}</Title>
+                      <Title order={3} className="font-normal" size={12}>{item.lasterchapter}</Title>
                       </div>
                   </Link>
                 ))}
           </div>
-        </div>
+        </Container>
       </Layout>
     </>
   );

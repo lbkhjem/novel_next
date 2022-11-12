@@ -1,6 +1,5 @@
-
-import { Text } from "@mantine/core";
-import Head from "next/head";
+import { Container, Text, Title } from "@mantine/core";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -11,6 +10,7 @@ import { shimmer, toBase64 } from "../../utils";
 export default function Index({ dataseo }) {
   const [datanovel, setDatanovel] = useState([]);
   const [showmore, setShowmore] = useState(false);
+  const [chaptxt, setChaptxt] = useState("");
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Index({ dataseo }) {
   const _renderHeader = () => {
     return (
       <div className="p-4 grid grid-cols-3 gap-4 my-4 w-full text-center  rounded-lg border shadow-md sm:p-8">
-        <div className="col-span-1">
+        <div className="col-span-3 lg:col-span-1 md:col-span-3 sm:col-span-3 items-center justify-center lg:justify-start flex">
           <Image
             src={dataseo.cover}
             className="px-2 "
@@ -40,29 +40,17 @@ export default function Index({ dataseo }) {
             priority
           />
         </div>
-        <div className="col-span-2 flex flex-col">
-          <Text
-           
-            className="font-medium text-left text-4xl py-1"
-          >
+        <div className="col-span-3 lg:col-span-2 md:col-span-3 flex flex-col">
+          <Title order={1} className="font-medium text-left text-4xl py-1">
             {dataseo.novelsname}
-          </Text>
-          <Text
-          
-            className="font-medium text-left py-1"
-          >
+          </Title>
+          <Text className="font-medium text-left py-1">
             {dataseo.othername}
           </Text>
-          <Text
-           
-            className="font-medium text-left py-1"
-          >
+          <Text className="font-medium text-left py-1">
             Author: {dataseo.author}
           </Text>
-          <Text
-           
-            className="font-medium text-left py-1"
-          >
+          <Text className="font-medium text-left py-1">
             <div
               className="flex-col w-full relative py-1"
               style={{
@@ -78,24 +66,17 @@ export default function Index({ dataseo }) {
                   __html: dataseo.description,
                 }}
               />
-              {/* {showmore ? null : (
-                <button
-                  onClick={() => setShowmore(true)}
-                  className="more-content py-2 flex items-center justify-center absolute z-50 bottom-0 left-0"
-                >
-                  <p className="text-ddv text-center font-bold text-16">
-                    Show more
-                  </p>
-                </button>
-              )} */}
             </div>
           </Text>
+          <Link href={`/chapter/${dataseo?.idnovels}/${dataseo.chapterlist[dataseo.chapterlist?.length - 1].idchapter}`}>
           <button
             type="button"
             className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             START READING
           </button>
+          </Link>
+          
         </div>
       </div>
     );
@@ -103,35 +84,22 @@ export default function Index({ dataseo }) {
   const _renderContent = () => {
     return (
       <div className="grid grid-cols-3 gap-4">
-        <div className="flex flex-col col-span-2 shadow-md p-2">
-          <Text
-            
-            className="font-medium text-left py-1"
-          >
-            Chapters
-          </Text>
-          <Text
-          
-            className="font-bold text-left py-1"
-          >
+        <div className="flex flex-col col-span-2 max-sm:col-span-3 shadow-md p-2">
+          <Text className="font-medium text-left py-1">Chapters</Text>
+          <Text className="font-bold text-left py-1">
             {dataseo.chapterlist?.length} Chapters
           </Text>
-          <div className="flex items-center py-2 mb-4">
+          <div className="flex items-center py-2 mb-4 flex-wrap">
             {dataseo.genresdata?.map((item, index) => (
               <span
                 key={index}
-                className="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"
+                className="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 my-1 rounded dark:bg-gray-700 dark:text-gray-300"
               >
                 {item.genrename}
               </span>
             ))}
           </div>
-          <Text
-          
-            className="font-bold text-left py-1"
-          >
-            Table of contents
-          </Text>
+          <Text className="font-bold text-left py-1">Table of contents</Text>
           <div className="overflow-x-auto relative">
             <div className="flex justify-between items-center p-2">
               <label htmlFor="table-search" className="sr-only">
@@ -156,6 +124,7 @@ export default function Index({ dataseo }) {
                 <input
                   type="text"
                   id="table-search"
+                  onChange={(e) => setChaptxt(e.target.value)}
                   className="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search for chapter"
                 />
@@ -169,7 +138,13 @@ export default function Index({ dataseo }) {
             </div>
 
             <div className="chapter-list">
-              {dataseo.chapterlist?.map((item, index) => (
+              {(chaptxt !== "" ?
+              dataseo.chapterlist.filter(function (o)  { 
+                return o.chaptername.toLowerCase().search(chaptxt.toLowerCase()) !== -1;
+               })
+               
+                : dataseo.chapterlist
+              )?.map((item, index) => (
                 <Link
                   href={`/chapter/${dataseo?.idnovels}/${item?.idchapter}`}
                   key={index}
@@ -184,15 +159,10 @@ export default function Index({ dataseo }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col col-span-1 shadow-md p-2">
-          <Text
-           
-            className="font-bold text-left py-1"
-          >
-            You may also like
-          </Text>
+        <div className="flex flex-col col-span-1 max-sm:col-span-3 shadow-md p-2">
+          <Text className="font-bold text-left py-1">You may also like</Text>
           {dataseo.othernovel?.map((item, index) => (
-            <div className="grid grid-cols-3 gap-2 py-2 shadow-md">
+            <div key={index} className="grid grid-cols-3 gap-2 py-2 shadow-md">
               <div className="col-span-1 ">
                 <Image
                   src={item.img}
@@ -214,12 +184,9 @@ export default function Index({ dataseo }) {
                 />
               </div>
               <div className="col-span-2">
-                <Text
-                  
-                  className="font-bold text-left py-1"
-                >
+                <Title order={3} size={14} className="text-left py-1">
                   {item.novelsname}
-                </Text>
+                </Title>
               </div>
             </div>
           ))}
@@ -230,13 +197,16 @@ export default function Index({ dataseo }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>{dataseo?.novelsname}</title>
-        </Head>
-        <div className="container mx-auto">
+        <NextSeo
+          title={`${dataseo.novelsname} novel - Novel - Best novel reading online website`}
+          description={`${dataseo.novelsname} novel, ${
+            dataseo.chapterlist[dataseo.chapterlist?.length - 1].chaptername
+          }. Read light novel online for free`}
+        />
+        <Container className=" mx-auto">
           {_renderHeader()}
           {_renderContent()}
-        </div>
+        </Container>
       </Layout>
     </>
   );
