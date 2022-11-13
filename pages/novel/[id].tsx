@@ -1,4 +1,4 @@
-import { Container, Text, Title } from "@mantine/core";
+import { Anchor, Breadcrumbs, Container, Text, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
@@ -68,15 +68,18 @@ export default function Index({ dataseo }) {
               />
             </div>
           </Text>
-          <Link href={`/chapter/${dataseo?.idnovels}/${dataseo.chapterlist[dataseo.chapterlist?.length - 1].idchapter}`}>
-          <button
-            type="button"
-            className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          <Link
+            href={`/chapter/${dataseo?.idnovels}/${
+              dataseo.chapterlist[dataseo.chapterlist?.length - 1].idchapter
+            }`}
           >
-            START READING
-          </button>
+            <button
+              type="button"
+              className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            >
+              START READING
+            </button>
           </Link>
-          
         </div>
       </div>
     );
@@ -138,11 +141,14 @@ export default function Index({ dataseo }) {
             </div>
 
             <div className="chapter-list">
-              {(chaptxt !== "" ?
-              dataseo.chapterlist.filter(function (o)  { 
-                return o.chaptername.toLowerCase().search(chaptxt.toLowerCase()) !== -1;
-               })
-               
+              {(chaptxt !== ""
+                ? dataseo.chapterlist.filter(function (o) {
+                    return (
+                      o.chaptername
+                        .toLowerCase()
+                        .search(chaptxt.toLowerCase()) !== -1
+                    );
+                  })
                 : dataseo.chapterlist
               )?.map((item, index) => (
                 <Link
@@ -180,7 +186,6 @@ export default function Index({ dataseo }) {
                   blurDataURL={`data:image/svg+xml;base64,${toBase64(
                     shimmer(83, 130)
                   )}`}
-                  priority
                 />
               </div>
               <div className="col-span-2">
@@ -204,6 +209,10 @@ export default function Index({ dataseo }) {
           }. Read light novel online for free`}
         />
         <Container className=" mx-auto">
+          <Breadcrumbs>
+            <Anchor href={"/"}>Home</Anchor>
+            <Anchor >{dataseo.novelsname}</Anchor>
+          </Breadcrumbs>
           {_renderHeader()}
           {_renderContent()}
         </Container>
