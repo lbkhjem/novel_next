@@ -53,7 +53,7 @@ export const Layout = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/novel_list?type=update&page=1"
                   className="block py-2 pr-4 pl-3 rounded md:bg-transparent  md:p-0"
                 >
                   Novel Update
@@ -61,7 +61,7 @@ export const Layout = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/novel_list?type=topview&page=1"
                   className="block py-2 pr-4 pl-3 rounded md:bg-transparent  md:p-0"
                 >
                   Hot Novel
@@ -69,7 +69,7 @@ export const Layout = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/novel_list?type=complete&page=1"
                   className="block py-2 pr-4 pl-3 rounded md:bg-transparent  md:p-0"
                 >
                   Completed Novel
