@@ -1,6 +1,7 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
 import { IconMoonStars, IconSun } from "@tabler/icons";
 import { useTheme as useNextTheme } from "next-themes";
+import Script from "next/script";
 import { AnalyticsWrapper } from "../analytics";
 
 export const Layout = ({ children }) => {
@@ -123,6 +124,19 @@ export const Layout = ({ children }) => {
         </ul>
       </footer>
       <AnalyticsWrapper />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-6L1QYHQKF5');
+        `}
+      </Script>
     </div>
   );
 };
