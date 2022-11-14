@@ -3,6 +3,7 @@ import {
   Anchor,
   Breadcrumbs,
   Container,
+  Divider,
   Popover,
   Text,
   Title,
@@ -66,52 +67,33 @@ export default function Index({ dataseo }) {
   return (
     <>
       <Layout>
-      <Head>
-          <link rel="canonical" href={`${PUBLIC_URL}/chapter/${datanovel.idnovels}/${dataseo.idchapter}`} />
+        <Head>
+          <link
+            rel="canonical"
+            href={`${PUBLIC_URL}/chapter/${datanovel.idnovels}/${dataseo.idchapter}`}
+          />
         </Head>
         <NextSeo
           title={`${dataseo?.chaptername} novel - Novel - Best novel reading online website`}
           description={`${dataseo?.chaptername} novel. Read light novel online for free`}
         />
         <div className=" mx-auto">
-        <Breadcrumbs className="p-2">
-            <Anchor href={"/"}>Home</Anchor>
-            <Anchor href={`/novel/${datanovel.idnovels}`}>{datanovel.novelsname}</Anchor>
-            <Anchor >{dataseo?.chaptername}</Anchor>
-          </Breadcrumbs>
-          <div
-            style={{ height: 60 }}
-            className="bg-black shadow-sm px-4  w-full"
-          >
-            <div className="container flex justify-between items-center p-2">
-              <Title order={1} className="text-16 text-white max-md:hidden">
-                {dataseo?.chaptername}
-              </Title>
-              <div className="flex items-center justify-between max-md:w-full">
-                {prechap ? (
-                  <a href={`/chapter/${dataseo.idnovels}/${prechap}`}>
-                    <Button
-                      className="bg-cyan text-black hover:bg-cyan"
-                      leftIcon={<IconChevronLeft />}
-                    >
-                      Prev chapter
-                    </Button>
-                  </a>
-                ) : null}
-                {nextchap ? (
-                  <a href={`/chapter/${dataseo.idnovels}/${nextchap}`}>
-                    <Button
-                      className="bg-cyan text-black hover:bg-cyan mx-2"
-                      rightIcon={<IconChevronRight />}
-                    >
-                      Next chapter
-                    </Button>
-                  </a>
-                ) : null}
-              </div>
-            </div>
-          </div>
           <Container className="chapter-content ">
+            <Breadcrumbs className="py-2">
+              <Anchor href={"/"}>Home</Anchor>
+              <Anchor href={`/novel/${datanovel.idnovels}`}>
+                {datanovel.novelsname}
+              </Anchor>
+              <Anchor>{dataseo?.chaptername}</Anchor>
+            </Breadcrumbs>
+            <Divider my="sm" />
+            <Title order={1} className="text-16">
+              {datanovel.novelsname}
+            </Title>
+            <Title order={2} className="text-16">
+              {dataseo?.chaptername}
+            </Title>
+            <Divider my="sm" variant="dashed" />
             <div
               ref={ref}
               className="relative antialiased text-16 py-4 text-justify"
@@ -136,10 +118,7 @@ export default function Index({ dataseo }) {
                     >
                       <Popover.Target>
                         <div className="flex max-md:hidden">
-                          <Title
-                            order={2}
-                            className="text-16 text-white  "
-                          >
+                          <Title order={2} className="text-16 text-white  ">
                             {datanovel?.novelsname}
                           </Title>
                           <IconChevronUp />
@@ -153,7 +132,6 @@ export default function Index({ dataseo }) {
                             </Title>
                           </Link>
                           <div className="flex flex-col col-span-2 max-sm:col-span-3 shadow-md p-2">
-                          
                             <div className="overflow-x-auto relative">
                               <div className="flex justify-between items-center p-2">
                                 <label
@@ -199,7 +177,10 @@ export default function Index({ dataseo }) {
                                 <span>Time uploaded</span>
                               </div>
 
-                              <div style={{maxHeight:400}} className="chapter-list">
+                              <div
+                                style={{ maxHeight: 400 }}
+                                className="chapter-list"
+                              >
                                 {(chaptxt !== ""
                                   ? datanovel.chapterlist.filter(function (o) {
                                       return (

@@ -45,7 +45,7 @@ export const Layout = ({ children }) => {
             <ul className="flex flex-col p-4 mt-4 items-center rounded-lg border  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block py-2 pr-4 pl-3 rounded md:bg-transparent  md:p-0"
                   aria-current="page"
                 >
@@ -107,13 +107,13 @@ export const Layout = ({ children }) => {
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a href="/privacy-policy" className="mr-4 hover:underline md:mr-6">
               Privacy Policy
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Licensing
+            <a href="/termsofuse" className="mr-4 hover:underline md:mr-6">
+            Terms of Use
             </a>
           </li>
           <li>

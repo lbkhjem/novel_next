@@ -212,7 +212,24 @@ export default function Index({ dataseo }) {
           description={`${dataseo.novelsname} novel, ${
             dataseo.chapterlist[dataseo.chapterlist?.length - 1].chaptername
           }. Read light novel online for free`}
+          openGraph={{
+            type: 'website',
+            url: `${PUBLIC_URL}/novel/${dataseo.idnovels}`,
+            title: `${dataseo.novelsname} novel - Novel - Best novel reading online website`,
+            description: `${dataseo.novelsname} novel, ${
+              dataseo.chapterlist[dataseo.chapterlist?.length - 1].chaptername
+            }. Read light novel online for free`,
+            images: [
+              {
+                url: dataseo.cover,
+                width: 200,
+                height: 300,
+                alt: dataseo.novelsname,
+              }
+            ],
+          }}
         />
+        
         <Container className=" mx-auto">
           <Breadcrumbs>
             <Anchor href={"/"}>Home</Anchor>
