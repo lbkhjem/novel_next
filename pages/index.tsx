@@ -1,10 +1,12 @@
 import { Container, Skeleton, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getNovelUpdate } from "../API/APIManage";
 import { Layout } from "../components/PC/Layout";
+import { PUBLIC_URL } from "../config";
 import Post from "../interfaces/post";
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -46,9 +48,12 @@ export default function Index() {
   return (
     <>
       <Layout>
+        <Head>
+          <link rel="canonical" href={`${PUBLIC_URL}`} />
+        </Head>
         <NextSeo
-          title="NovelWorld | Read Novels online free"
-          description="NovelWorld is the foremost English publisher of Chinese and Korean webnovels and light novels"
+          title="NovelFav | Read Novels online free"
+          description="NovelFav is the foremost English publisher of Chinese and Korean webnovels and light novels"
         />
         <Container className=" mx-auto">
           <div className="w-full flex justify-between py-2">

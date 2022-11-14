@@ -21,6 +21,7 @@ import { baseUrlNovel, getNovelDetails } from "../../../API/APIManage";
 import { Layout } from "../../../components/PC/Layout";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
+import { PUBLIC_URL } from "../../../config";
 export default function Index({ dataseo }) {
   const [datanovel, setDatanovel] = useState<any>([]);
   const [showmore, setShowmore] = useState(false);
@@ -65,6 +66,9 @@ export default function Index({ dataseo }) {
   return (
     <>
       <Layout>
+      <Head>
+          <link rel="canonical" href={`${PUBLIC_URL}/chapter/${datanovel.idnovels}/${dataseo.idchapter}`} />
+        </Head>
         <NextSeo
           title={`${dataseo?.chaptername} novel - Novel - Best novel reading online website`}
           description={`${dataseo?.chaptername} novel. Read light novel online for free`}

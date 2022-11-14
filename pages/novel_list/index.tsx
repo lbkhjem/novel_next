@@ -1,11 +1,13 @@
 import { Container, Pagination, Skeleton, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { baseUrlNovel, getNovelUpdate } from "../../API/APIManage";
 import { Layout } from "../../components/PC/Layout";
+import { PUBLIC_URL } from "../../config";
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -25,7 +27,7 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
-export default function Index({ dataseo,query }) {
+export default function Index({ dataseo, query }) {
   console.log(dataseo);
   const [isLoading, setIsLoading] = useState(false);
   const [datanovel, setDatanovel] = useState([]);
@@ -40,21 +42,30 @@ export default function Index({ dataseo,query }) {
   }, []);
   const [activePage, setPage] = useState(query?.page);
   useEffect(() => {
-    if(activePage !== query?.page){
-        Router.push(`/novel_list?type=${query.type}&page=${activePage}`)
+    if (activePage !== query?.page) {
+      Router.push(`/novel_list?type=${query.type}&page=${activePage}`);
     }
-  },[activePage])
+  }, [activePage]);
   return (
     <>
       <Layout>
+        <Head>
+        <link rel="canonical" href={`${PUBLIC_URL}/novel_list?type=${query.type}&page=${activePage}`} />
+        </Head>
         <NextSeo
-          title="NovelWorld | Read Novels online free"
-          description="NovelWorld is the foremost English publisher of Chinese and Korean webnovels and light novels"
+          title={`${
+            query.type == "topview"
+              ? "Hot Novel"
+              : query.type == "update"
+              ? "Novel Update"
+              : "Completed Novel"
+          } | NovelFav | Read Novels online free`}
+          description="NovelFav is the foremost English publisher of Chinese and Korean webnovels and light novels"
         />
         <Container className=" mx-auto">
           <div className="w-full flex justify-between py-2">
             <Title className="max-md:text-14" size={20} order={1}>
-               NOVEL LIST
+              NOVEL LIST
             </Title>
             {/* <Link href="#">MORE</Link> */}
           </div>
@@ -97,7 +108,13 @@ export default function Index({ dataseo,query }) {
               </Link>
             ))}
           </div>
-          <Pagination page={Number(activePage)} className='py-2' onChange={setPage} total={2164} />;
+          <Pagination
+            page={Number(activePage)}
+            className="py-2"
+            onChange={setPage}
+            total={2164}
+          />
+          ;
         </Container>
       </Layout>
     </>
@@ -120,18 +137,20 @@ export async function getServerSideProps({
     const res1 = await fetch(`${baseUrlNovel}api/hot?page=${query.page}`);
     const dataseo = await res1?.json();
     let dataseos = dataseo.data;
-    return { props: { dataseo: dataseos,query:query } };
-  }else {
+    return { props: { dataseo: dataseos, query: query } };
+  } else {
     if (query.type === "update") {
-        const res1 = await fetch(`${baseUrlNovel}api/update?page=${query.page}`);
-        const dataseo = await res1?.json();
-        let dataseos = dataseo.data;
-        return { props: { dataseo: dataseos,query:query } };
-      } else {
-        const res1 = await fetch(`${baseUrlNovel}api/complete?page=${query.page}`);
-        const dataseo = await res1?.json();
-        let dataseos = dataseo.data;
-        return { props: { dataseo: dataseos,query:query } };
-      }
+      const res1 = await fetch(`${baseUrlNovel}api/update?page=${query.page}`);
+      const dataseo = await res1?.json();
+      let dataseos = dataseo.data;
+      return { props: { dataseo: dataseos, query: query } };
+    } else {
+      const res1 = await fetch(
+        `${baseUrlNovel}api/complete?page=${query.page}`
+      );
+      const dataseo = await res1?.json();
+      let dataseos = dataseo.data;
+      return { props: { dataseo: dataseos, query: query } };
+    }
   }
 }

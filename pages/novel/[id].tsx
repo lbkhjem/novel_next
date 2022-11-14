@@ -1,10 +1,12 @@
 import { Anchor, Breadcrumbs, Container, Text, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { baseUrlNovel } from "../../API/APIManage";
 import { Layout } from "../../components/PC/Layout";
+import { PUBLIC_URL } from "../../config";
 import { shimmer, toBase64 } from "../../utils";
 
 export default function Index({ dataseo }) {
@@ -70,7 +72,7 @@ export default function Index({ dataseo }) {
           </Text>
           <Link
             href={`/chapter/${dataseo?.idnovels}/${
-              dataseo.chapterlist[dataseo.chapterlist?.length - 1].idchapter
+              dataseo.chapterlist[0].idchapter
             }`}
           >
             <button
@@ -202,6 +204,9 @@ export default function Index({ dataseo }) {
   return (
     <>
       <Layout>
+        <Head>
+          <link rel="canonical" href={`${PUBLIC_URL}/novel/${dataseo.idnovels}`} />
+        </Head>
         <NextSeo
           title={`${dataseo.novelsname} novel - Novel - Best novel reading online website`}
           description={`${dataseo.novelsname} novel, ${
@@ -211,7 +216,7 @@ export default function Index({ dataseo }) {
         <Container className=" mx-auto">
           <Breadcrumbs>
             <Anchor href={"/"}>Home</Anchor>
-            <Anchor >{dataseo.novelsname}</Anchor>
+            <Anchor>{dataseo.novelsname}</Anchor>
           </Breadcrumbs>
           {_renderHeader()}
           {_renderContent()}
