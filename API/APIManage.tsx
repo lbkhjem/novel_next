@@ -2,7 +2,7 @@ import { AxiosInstance } from './networking';
 
 // export const baseUrlNovel = 'https://novelnextapi.vercel.app/';
 
-export const baseUrlNovel = 'https://novel-next.vercel.app/';
+export const baseUrlNovel = 'https://www.novelfav.com/';
 
 export function getNovelUpdate(params: any) {
   return AxiosInstance.get(baseUrlNovel + `api/update?page=${params?.page}`, {});
