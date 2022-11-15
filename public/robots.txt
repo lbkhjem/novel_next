@@ -1,3 +1,10 @@
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://www.novelfav.com
+
+# Sitemaps
+Sitemap: https://www.novelfav.com/sitemap.xml
+Sitemap: https://www.novelfav.com/server-sitemap.xml
