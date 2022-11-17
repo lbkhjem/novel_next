@@ -35,6 +35,9 @@ app.prepare().then(() => {
   server.get("/api/hot", (req, res) => {
     return handle(req, res);
   });
+  server.get("/api/new", (req, res) => {
+    return handle(req, res);
+  });
   server.get("/api/complete", (req, res) => {
     return handle(req, res);
   });

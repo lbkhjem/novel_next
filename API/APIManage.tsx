@@ -8,7 +8,10 @@ export function getNovelUpdate(params: any) {
   return AxiosInstance.get(baseUrlNovel + `api/update?page=${params?.page}`, {});
 }
 export function getNovelHotest(params: any) {
-  return AxiosInstance.get(baseUrlNovel + `hotnovel?page=${params?.page}`, {});
+  return AxiosInstance.get(baseUrlNovel + `api/hot?page=${params?.page}`, {});
+}
+export function getNovelnew(params: any) {
+  return AxiosInstance.get(baseUrlNovel + `api/new?page=${params?.page}`, {});
 }
 export function getNovelCompleted(params: any) {
   return AxiosInstance.get(baseUrlNovel + `completed?page=${params?.page}`, {});
