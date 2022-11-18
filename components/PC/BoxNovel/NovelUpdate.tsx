@@ -52,8 +52,9 @@ export default function NovelUpdate() {
                   style={{
                     position: "relative",
                     width: "20%",
-                    height: "80px",
+                    // height:'auto'
                   }}
+                  className="h-20 max-sm:h-14"
                 >
                   <Image
                     alt={item.novelsname}
@@ -64,9 +65,12 @@ export default function NovelUpdate() {
                     // )}`}
                     priority
                     // placeholder="blur"
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw"
                     style={{
                       objectFit: "cover",
+                    
                     }}
                   />
                 </div>
