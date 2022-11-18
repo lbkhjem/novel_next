@@ -3,9 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getNovelHotest, getNovelUpdate } from "../../../API/APIManage";
-const dataloading = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-];
+const dataloading = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 export default function NovelHot() {
   const [isLoading, setIsLoading] = useState(false);
   const [datanovel, setDatanovel] = useState([]);
@@ -43,28 +41,22 @@ export default function NovelHot() {
                 className="max-w-sm  h-full "
                 href={`/novel/${item.idnovel}`}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "200px",
-                  }}
-                >
+                <div style={{ height: 194 }} className="overflow-hidden">
                   <Image
                     alt={item.novelsname}
                     src={item.cover}
-                    fill
-                    // blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                    //   shimmer(700, 475)
-                    // )}`}
                     priority
-                    // placeholder="blur"
+                    width={145}
+                    height={194}
                     sizes="100vw"
                     style={{
+                      width: "100%",
+                      height: "auto",
                       objectFit: "cover",
                     }}
                   />
                 </div>
+
                 <div className="py-5 px-2">
                   <Title order={2} size={14}>
                     {item.novelsname}
