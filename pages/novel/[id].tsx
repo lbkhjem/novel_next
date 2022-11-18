@@ -1,14 +1,21 @@
 import { Anchor, Breadcrumbs, Container, Text, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { baseUrlNovel } from "../../API/APIManage";
 import { Layout } from "../../components/PC/Layout";
 import { PUBLIC_URL } from "../../config";
 import { shimmer, toBase64 } from "../../utils";
 
+const DynamicListChapter = dynamic(
+  () => import("../../components/PC/Novel/ChapterList"),
+  {
+    suspense: true,
+  }
+);
 export default function Index({ dataseo }) {
   const [datanovel, setDatanovel] = useState([]);
   const [showmore, setShowmore] = useState(false);
@@ -136,36 +143,9 @@ export default function Index({ dataseo }) {
               </div>
             </div>
           </div>
-          <div id="list_chapter" className="list_chapter w-full">
-            <div className="flex row justify-between w-full title-list-chapter">
-              <h2 className="h2-manga">{dataseo.novelsname} Chapters</h2>
-              <span>Time uploaded</span>
-            </div>
-
-            <div className="chapter-list">
-              {(chaptxt !== ""
-                ? dataseo.chapterlist.filter(function (o) {
-                    return (
-                      o.chaptername
-                        .toLowerCase()
-                        .search(chaptxt.toLowerCase()) !== -1
-                    );
-                  })
-                : dataseo.chapterlist
-              )?.map((item, index) => (
-                <Link
-                  href={`/chapter/${dataseo?.idnovels}/${item?.idchapter}`}
-                  key={index}
-                  className="row"
-                >
-                  <span title={`${dataseo?.novelsname} ${item.chaptername}`}>
-                    <p>{item?.chaptername}</p>
-                  </span>
-                  <span>{item?.timeupdate}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
+          <Suspense fallback={`Loading...`}>
+            <DynamicListChapter dataseo={dataseo} />
+          </Suspense>
         </div>
         <div className="flex flex-col col-span-1 max-sm:col-span-3 shadow-md p-2">
           <Text className="font-bold text-left py-1">You may also like</Text>

@@ -45,7 +45,7 @@ export default function NovelUpdate() {
           : datanovel?.slice(0, 18)?.map((item, index) => (
               <Link
                 key={index}
-                className="max-w-sm  h-full flex justify-between items-center w-full"
+                className="max-w-sm mb-4 h-full flex justify-between items-center w-full"
                 href={`/novel/${item.idnovel}`}
               >
                 <div
@@ -54,23 +54,19 @@ export default function NovelUpdate() {
                     width: "20%",
                     // height:'auto'
                   }}
-                  className="h-20 max-sm:h-14"
+                //   className="h-20 max-sm:h-14 "
                 >
-                  <Image
+                   <Image
                     alt={item.novelsname}
                     src={item.cover}
-                    fill
-                    // blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                    //   shimmer(700, 475)
-                    // )}`}
                     priority
-                    // placeholder="blur"
-                    sizes="(max-width: 768px) 100vw,
-                    (max-width: 1200px) 50vw,
-                    33vw"
+                    width={40}
+                    height={53}
+                    sizes="100vw"
                     style={{
+                      width: "100%",
+                      height: "auto",
                       objectFit: "cover",
-                    
                     }}
                   />
                 </div>

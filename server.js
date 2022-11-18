@@ -44,6 +44,9 @@ app.prepare().then(() => {
   server.get("/api/novel", (req, res) => {
     return handle(req, res);
   });
+  server.get("/api/novelseo", (req, res) => {
+    return handle(req, res);
+  });
   server.get("/api/chapter", (req, res) => {
     return handle(req, res);
   });

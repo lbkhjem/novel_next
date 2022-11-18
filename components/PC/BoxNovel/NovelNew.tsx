@@ -45,24 +45,17 @@ export default function  NovelNew () {
                 className="max-w-sm  h-full "
                 href={`/novel/${item.idnovel}`}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "200px",
-                  }}
-                >
+               <div style={{ height: 194 }} className="overflow-hidden">
                   <Image
                     alt={item.novelsname}
                     src={item.cover}
-                    fill
-                    // blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                    //   shimmer(700, 475)
-                    // )}`}
                     priority
-                    // placeholder="blur"
+                    width={145}
+                    height={194}
                     sizes="100vw"
                     style={{
+                      width: "100%",
+                      height: "auto",
                       objectFit: "cover",
                     }}
                   />
