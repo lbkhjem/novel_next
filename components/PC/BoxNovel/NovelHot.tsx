@@ -38,6 +38,7 @@ export default function NovelHot() {
           : datanovel.slice(0, 14).map((item, index) => (
               <Link
                 key={index}
+                title={item.novelsname}
                 className="max-w-sm  h-full "
                 href={`/novel/${item.idnovel}`}
               >

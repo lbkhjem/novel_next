@@ -32,7 +32,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           content="width=device-width,  initial-scale=1.0"
           name="viewport"
         />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
 
       <ColorSchemeProvider

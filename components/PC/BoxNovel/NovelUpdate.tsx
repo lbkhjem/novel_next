@@ -45,6 +45,7 @@ export default function NovelUpdate() {
           : datanovel?.slice(0, 18)?.map((item, index) => (
               <Link
                 key={index}
+                title={item.novelsname}
                 className="max-w-sm mb-4 h-full flex justify-between items-center w-full"
                 href={`/novel/${item.idnovel}`}
               >
