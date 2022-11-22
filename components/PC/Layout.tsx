@@ -1,5 +1,5 @@
-import { ActionIcon, useMantineColorScheme } from "@mantine/core";
-import { IconMoonStars, IconSun } from "@tabler/icons";
+import { ActionIcon, Input, useMantineColorScheme } from "@mantine/core";
+import { IconMoonStars, IconSearch, IconSun } from "@tabler/icons";
 import { useTheme as useNextTheme } from "next-themes";
 import Script from "next/script";
 import { AnalyticsWrapper } from "../analytics";
@@ -14,7 +14,6 @@ export const Layout = ({ children }) => {
       <nav className=" px-2 sm:px-4 py-2.5  drop-shadow-xl  border-b mb-2 ">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <a href="/" className="flex items-center">
-          
             <span className="text-xl font-semibold whitespace-nowrap">
               Novel
             </span>
@@ -77,6 +76,14 @@ export const Layout = ({ children }) => {
                 </a>
               </li>
               <li>
+                <Input
+                  // icon={<IconSearch />}
+                  onChange={(e) => console.log(e.target.value)}
+                  placeholder="Search...."
+                  rightSection={<IconSearch />}
+                />
+              </li>
+              <li>
                 <ActionIcon
                   variant="outline"
                   color={dark ? "yellow" : "blue"}
@@ -113,7 +120,7 @@ export const Layout = ({ children }) => {
           </li>
           <li>
             <a href="/termsofuse" className="mr-4 hover:underline md:mr-6">
-            Terms of Use
+              Terms of Use
             </a>
           </li>
           <li>

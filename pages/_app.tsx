@@ -33,6 +33,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           name="viewport"
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32"></link>
+        <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192"></link>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
+        <meta name="msapplication-TileImage" content="/android-chrome-512x512.png"></meta>
       </Head>
 
       <ColorSchemeProvider

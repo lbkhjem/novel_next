@@ -68,6 +68,7 @@ export default function Index() {
       <Layout>
         <Head>
           <link rel="canonical" href={`${PUBLIC_URL}`} />
+          <link rel="profile" href="https://gmpg.org/xfn/11" />
         </Head>
         <NextSeo
           title="NovelFav | Read Novels online free"
