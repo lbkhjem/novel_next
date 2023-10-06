@@ -49,11 +49,17 @@ const handler = async (req, res) => {
    let chaptername = $(".name_chapter").text();
     console.log(chaptername);
   let  content = $(".vung_doc").html();
+  const prevChapterLink = $('.menu_doc a:contains("PREV CHAPTER")').attr('href');
+  const nextChapterLink = $('.menu_doc a:contains("NEXT CHAPTER")').attr('href');
+  const prevChapterId = prevChapterLink ? prevChapterLink.split('/').pop() : null;
+  const nextChapterId = nextChapterLink ? nextChapterLink.split('/').pop() : null;
   let  novel = {
       idnovels: idnovels,
       idchapter: idchapter,
       chaptername: chaptername,
       content: content,
+      prevChapterId:prevChapterId,
+      nextChapterId: nextChapterId
     };
     try {
       res.status(200).json(novel);
