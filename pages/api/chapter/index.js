@@ -49,6 +49,8 @@ const handler = async (req, res) => {
    let chaptername = $(".name_chapter").text();
     console.log(chaptername);
   let  content = $(".vung_doc").html();
+  const title = $('div.lem_bem_top h2').text();
+
   const prevChapterLink = $('.menu_doc a:contains("PREV CHAPTER")').attr('href');
   const nextChapterLink = $('.menu_doc a:contains("NEXT CHAPTER")').attr('href');
   const prevChapterId = prevChapterLink ? prevChapterLink.split('/').pop() : null;
@@ -56,6 +58,7 @@ const handler = async (req, res) => {
   let  novel = {
       idnovels: idnovels,
       idchapter: idchapter,
+      title:title,
       chaptername: chaptername,
       content: content,
       prevChapterId:prevChapterId,
