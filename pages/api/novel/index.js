@@ -51,7 +51,7 @@ const handler = async (req, res) => {
     cover = $(".info_image img").attr("src");
     othername = $(".truyen_info_right li:nth-child(1) span").text();
     author = $(".truyen_info_right li:nth-child(2) a").text();
-
+    const view = $('li:contains("View :")').text().trim().split(':')[1].trim();
     $(".truyen_info_right li:nth-child(3) a").each(function (result) {
       let genres = $(this).text();
       var link = $(this).attr("href");
@@ -118,6 +118,7 @@ const handler = async (req, res) => {
     });
     novel.push({
       novelsname: novelsname,
+      view: view,
       idnovels: idnovels,
       othername: othername,
       author: author,
